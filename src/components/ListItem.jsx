@@ -6,17 +6,26 @@ function ListItem() {
   const { items, wallet, setWallet, total, setTotal, itemsBought, setItemsBought, currentPage, currentPageItems, setCurrentPageItems, searchTerm, searchResults } = useContext(WalletContext);
 
   function buy(price, name, id) {
+
+    let found = false;
+
     setWallet(wallet - price);
     setTotal(total + price);
 
-    if (itemsBought[id]) {
-      itemsBought[id]["num"] += 1;
-    } else {
+    for (let i = 0; i < itemsBought.length; i ++) {
+      if (itemsBought[i]["name"] === name) {
+        found = true;
+        itemsBought[i]["num"] += 1;
+      }
+    }
+
+    if (!found) {
       const newObj = {};
       newObj["name"] = name;
       newObj["num"] = 1;
-      itemsBought[id] = newObj;
+      itemsBought.push(newObj);
     }
+
   }
 
   function createCurrentItems(items) {
@@ -46,9 +55,16 @@ function ListItem() {
     currentItems = createCurrentItems(searchResults);
   }
 
+  if (currentItems.length > 0) {
+    return(
+      <>
+        {currentItems}
+      </>
+    );
+  }
   return(
     <>
-      {currentItems}
+      <h1>No Results Found For: {searchTerm}</h1>
     </>
   );
 }

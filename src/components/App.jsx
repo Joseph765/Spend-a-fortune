@@ -35,8 +35,6 @@ function App() {
     getRequest();
   }, [searchTerm]);
 
-  console.log(searchResults);
-
   if (items.length > 0) {
     return (
       <WalletContext.Provider value={{wallet, setWallet, total, setTotal, itemsBought, items, currentPage, setCurrentPage, searchTerm, setSearchTerm, currentPageItems, setCurrentPageItems, searchResults}}>
