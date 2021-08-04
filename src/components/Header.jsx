@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import WalletContext from './AppContext.jsx';
 
+import Timer from './Timer.jsx';
+
 function Header() {
 
   const { wallet, setWallet, total, setTotal, itemsBought, setSearchTerm } = useContext(WalletContext);
@@ -11,6 +13,7 @@ function Header() {
 
   return (
     <>
+      <Timer />
       <h1 className="title">Spend A Fortune!</h1>
       <div className="wallet">
         <p>Amount to spend: ${wallet}</p>

@@ -1,4 +1,6 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
+import GameStart from './GameStart.jsx';
+import GameOver from './GameOver.jsx';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 import List from './List.jsx';
@@ -6,7 +8,7 @@ import WalletContext from './AppContext.jsx';
 
 function App() {
 
-  const [wallet, setWallet] = useState(10000);
+  const [wallet, setWallet] = useState(50000);
   const [total, setTotal] = useState(0);
   const [items, setItems] = useState([]);
   const [itemsBought, setItemsBought] = useState([]);
@@ -14,6 +16,8 @@ function App() {
   const [currentPageItems, setCurrentPageItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState('');
+  const [startGame, setStartGame] = useState(false);
+  const [gameStatus, setGameStatus] = useState('');
 
   function getRequest() {
     if (searchTerm === '') {
@@ -37,10 +41,18 @@ function App() {
 
   if (items.length > 0) {
     return (
-      <WalletContext.Provider value={{wallet, setWallet, total, setTotal, itemsBought, items, currentPage, setCurrentPage, searchTerm, setSearchTerm, currentPageItems, setCurrentPageItems, searchResults}}>
-        <Header />
-        <List />
-        <Footer />
+      <WalletContext.Provider value={{wallet, setWallet, total, setTotal, itemsBought, items, currentPage, setCurrentPage, searchTerm, setSearchTerm, currentPageItems, setCurrentPageItems, searchResults, setStartGame, setGameStatus, gameStatus}}>
+
+        {
+        (startGame && gameStatus === '')
+        ? (<><Header /><List /><Footer /></>)
+        : ((gameStatus === 'you lost :(')
+        ? (<GameOver />)
+        : ((gameStatus === 'You Won! :)')
+        ? (<GameOver />)
+        : (<GameStart />)))
+      }
+
       </WalletContext.Provider>
     );
   }

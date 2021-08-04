@@ -3,23 +3,32 @@ import WalletContext from './AppContext.jsx';
 
 function ListItem() {
 
-  const { items, wallet, setWallet, total, setTotal, itemsBought, setItemsBought, currentPage, currentPageItems, setCurrentPageItems, searchTerm, searchResults } = useContext(WalletContext);
+  const { items, wallet, setWallet, total, setTotal, itemsBought, setItemsBought, currentPage, currentPageItems, setCurrentPageItems, searchTerm, searchResults, setGameStatus } = useContext(WalletContext);
 
-  function buy(price, name, id) {
+  function buy(event, price, name, id) {
+
+    if (wallet - price <= 0) {
+      setGameStatus('You Won! :)')
+    }
 
     let found = false;
-
-    setWallet(wallet - price);
-    setTotal(total + price);
 
     for (let i = 0; i < itemsBought.length; i ++) {
       if (itemsBought[i]["name"] === name) {
         found = true;
-        itemsBought[i]["num"] += 1;
+        if (itemsBought[i]["num"] !== 5) {
+          setWallet(wallet - price);
+          setTotal(total + price);
+          itemsBought[i]["num"] += 1;
+        } else {
+          //event.target.style.backgroundColor = 'red';
+        }
       }
     }
 
     if (!found) {
+      setWallet(wallet - price);
+      setTotal(total + price);
       const newObj = {};
       newObj["name"] = name;
       newObj["num"] = 1;
@@ -39,7 +48,7 @@ function ListItem() {
             <img src={item.imageUrl} />
             <p>{item.productName}</p>
             <p>${item.price}</p>
-            <button onClick={() => buy(parseInt(item.price), item.productName, item.id)}>Buy</button>
+            <button className="buy-btn" onClick={(event) => buy(event, parseInt(item.price), item.productName, item.id)}>Buy</button>
           </div>
         ));
       }
