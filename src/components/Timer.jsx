@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
-import WalletContext from './AppContext.jsx';
+import React, { useState, useEffect, useContext } from "react";
+import WalletContext from "./AppContext.jsx";
 
 function Timer() {
-
   const [timer, setTimer] = useState(60000);
   const [currentTime, setCurrentTime] = useState("1:00");
 
@@ -10,7 +9,7 @@ function Timer() {
 
   function millisToMinutesAndSeconds(millis) {
     var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return 0 + ":" + (seconds < 10 ? '0' : '') + seconds;
+    return 0 + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
 
   setTimeout(() => {
@@ -18,14 +17,11 @@ function Timer() {
     setTimer(timer - 1000);
 
     if (timer === 0) {
-      setGameStatus('you lost :(');
+      setGameStatus("you lost :(");
     }
   }, 1000);
 
-  return (
-    <p className="timer">{currentTime}</p>
-  );
-
+  return <p className="timer">{currentTime}</p>;
 }
 
 export default Timer;

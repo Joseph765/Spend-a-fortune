@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react';
-import WalletContext from './AppContext.jsx';
+import React, { useContext, useState } from "react";
+import WalletContext from "./AppContext.jsx";
 
 function StartGame() {
-
   const { setStartGame } = useContext(WalletContext);
 
   return (
