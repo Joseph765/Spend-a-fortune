@@ -41,7 +41,7 @@ function App() {
 
   if (items.length > 0) {
     return (
-      <WalletContext.Provider value={{wallet, setWallet, total, setTotal, itemsBought, setItemsBought, items, currentPage, setCurrentPage, searchTerm, setSearchTerm, currentPageItems, setCurrentPageItems, searchResults, setStartGame, setGameStatus, gameStatus}}>
+      <WalletContext.Provider value={{wallet, setWallet, total, setTotal, itemsBought, setItemsBought, items, setItems, currentPage, setCurrentPage, searchTerm, setSearchTerm, currentPageItems, setCurrentPageItems, searchResults, setStartGame, setGameStatus, gameStatus}}>
 
         {
           (startGame && gameStatus === '')

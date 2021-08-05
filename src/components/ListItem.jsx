@@ -1,12 +1,26 @@
-import React, { useContext, useEffect } from 'react';
-import WalletContext from './AppContext.jsx';
+import React, { useContext, useEffect } from "react";
+import WalletContext from "./AppContext.jsx";
 
 function ListItem() {
-
-  const { items, wallet, setWallet, total, setTotal, itemsBought, setItemsBought, currentPage, currentPageItems, setCurrentPageItems, searchTerm, searchResults, setGameStatus } = useContext(WalletContext);
+  const {
+    items,
+    setItems,
+    wallet,
+    setWallet,
+    total,
+    setTotal,
+    itemsBought,
+    setItemsBought,
+    currentPage,
+    currentPageItems,
+    setCurrentPageItems,
+    searchTerm,
+    searchResults,
+    setGameStatus,
+  } = useContext(WalletContext);
 
   useEffect(() => {
-    if (searchTerm === '') {
+    if (searchTerm === "") {
       setCurrentPageItems(createCurrentItems(items));
     } else {
       setCurrentPageItems(createCurrentItems(searchResults));
@@ -14,14 +28,13 @@ function ListItem() {
   }, [currentPage, searchTerm]);
 
   function buy(event, price, name, id) {
-
     if (wallet - price <= 0) {
-      setGameStatus('You Won! :)')
+      setGameStatus("You Won! :)");
     }
 
     let found = false;
 
-    for (let i = 0; i < itemsBought.length; i ++) {
+    for (let i = 0; i < itemsBought.length; i++) {
       if (itemsBought[i]["name"] === name) {
         found = true;
         if (itemsBought[i]["num"] !== 5) {
@@ -31,7 +44,13 @@ function ListItem() {
           newArr[i]["num"] += 1;
           setItemsBought(newArr);
         } else {
-          event.target.className = 'buy-btn-red';
+          const newItems = items.map((item) => {
+            if (item.productName === name) {
+              item.soldOut = true;
+            }
+            return item;
+          });
+          setItems(newItems);
         }
       }
     }
@@ -44,23 +63,29 @@ function ListItem() {
       newObj["num"] = 1;
       itemsBought.push(newObj);
     }
-
   }
 
   function createCurrentItems(items) {
     const currentItems = [];
 
-    for (let i = currentPage * 9 - 9; i < currentPage * 9; i ++) {
+    for (let i = currentPage * 9 - 9; i < currentPage * 9; i++) {
       let item = items[i];
       if (item) {
-        currentItems.push((
+        currentItems.push(
           <div className="listItem">
             <img src={item.imageUrl} />
             <p>{item.productName}</p>
             <p>${item.price}</p>
-            <button className="buy-btn-green" onClick={(event) => buy(event, parseInt(item.price), item.productName, item.id)}>Buy</button>
+            <button
+              className={item.isSoldOut ? "buy-btn-red" : "buy-btn-green"}
+              onClick={(event) =>
+                buy(event, parseInt(item.price), item.productName, item.id)
+              }
+            >
+              Buy
+            </button>
           </div>
-        ));
+        );
       }
     }
 
@@ -68,18 +93,14 @@ function ListItem() {
   }
 
   let currentItems;
-  if (searchTerm === '') {
+  if (searchTerm === "") {
     currentItems = createCurrentItems(items);
   } else {
     currentItems = createCurrentItems(searchResults);
   }
 
   if (currentItems.length > 0) {
-    return (
-      <>
-        {currentItems}
-      </>
-    );
+    return <>{currentItems}</>;
   }
   return (
     <>
