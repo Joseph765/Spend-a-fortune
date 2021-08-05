@@ -5,6 +5,14 @@ function ListItem() {
 
   const { items, wallet, setWallet, total, setTotal, itemsBought, setItemsBought, currentPage, currentPageItems, setCurrentPageItems, searchTerm, searchResults, setGameStatus } = useContext(WalletContext);
 
+  useEffect(() => {
+    if (searchTerm === '') {
+      setCurrentPageItems(createCurrentItems(items));
+    } else {
+      setCurrentPageItems(createCurrentItems(searchResults));
+    }
+  }, [currentPage, searchTerm]);
+
   function buy(event, price, name, id) {
 
     if (wallet - price <= 0) {
@@ -19,9 +27,11 @@ function ListItem() {
         if (itemsBought[i]["num"] !== 5) {
           setWallet(wallet - price);
           setTotal(total + price);
-          itemsBought[i]["num"] += 1;
+          const newArr = itemsBought;
+          newArr[i]["num"] += 1;
+          setItemsBought(newArr);
         } else {
-          //event.target.style.backgroundColor = 'red';
+          event.target.className = 'buy-btn-red';
         }
       }
     }
@@ -48,7 +58,7 @@ function ListItem() {
             <img src={item.imageUrl} />
             <p>{item.productName}</p>
             <p>${item.price}</p>
-            <button className="buy-btn" onClick={(event) => buy(event, parseInt(item.price), item.productName, item.id)}>Buy</button>
+            <button className="buy-btn-green" onClick={(event) => buy(event, parseInt(item.price), item.productName, item.id)}>Buy</button>
           </div>
         ));
       }
@@ -65,13 +75,13 @@ function ListItem() {
   }
 
   if (currentItems.length > 0) {
-    return(
+    return (
       <>
         {currentItems}
       </>
     );
   }
-  return(
+  return (
     <>
       <h1>No Results Found For: {searchTerm}</h1>
     </>

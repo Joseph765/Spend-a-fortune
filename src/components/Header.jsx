@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import WalletContext from './AppContext.jsx';
 
 import Timer from './Timer.jsx';
+import ShoppingCart from './ShoppingCart.jsx';
 
 function Header() {
 
@@ -22,10 +23,7 @@ function Header() {
           <input type="text" onChange={(e) => setSearchTerm(e.target.value)}/>
         </div>
       </div>
-      <div className="shopping-cart">
-        <h2>Items Bought:</h2>
-        <p>{items}</p>
-      </div>
+      <ShoppingCart />
     </>
   );
 }

@@ -3,9 +3,10 @@ import WalletContext from './AppContext.jsx';
 
 function Timer() {
 
-  const { setGameStatus } = useContext(WalletContext);
   const [timer, setTimer] = useState(60000);
   const [currentTime, setCurrentTime] = useState("1:00");
+
+  const { setGameStatus } = useContext(WalletContext);
 
   function millisToMinutesAndSeconds(millis) {
     var seconds = ((millis % 60000) / 1000).toFixed(0);

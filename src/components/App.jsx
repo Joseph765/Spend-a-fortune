@@ -41,17 +41,17 @@ function App() {
 
   if (items.length > 0) {
     return (
-      <WalletContext.Provider value={{wallet, setWallet, total, setTotal, itemsBought, items, currentPage, setCurrentPage, searchTerm, setSearchTerm, currentPageItems, setCurrentPageItems, searchResults, setStartGame, setGameStatus, gameStatus}}>
+      <WalletContext.Provider value={{wallet, setWallet, total, setTotal, itemsBought, setItemsBought, items, currentPage, setCurrentPage, searchTerm, setSearchTerm, currentPageItems, setCurrentPageItems, searchResults, setStartGame, setGameStatus, gameStatus}}>
 
         {
-        (startGame && gameStatus === '')
-        ? (<><Header /><List /><Footer /></>)
-        : ((gameStatus === 'you lost :(')
-        ? (<GameOver />)
-        : ((gameStatus === 'You Won! :)')
-        ? (<GameOver />)
-        : (<GameStart />)))
-      }
+          (startGame && gameStatus === '')
+          ? (<><Header /><List /><Footer /></>)
+          : ((gameStatus === 'you lost :(')
+          ? (<GameOver />)
+          : ((gameStatus === 'You Won! :)')
+          ? (<GameOver />)
+          : (<GameStart />)))
+        }
 
       </WalletContext.Provider>
     );
