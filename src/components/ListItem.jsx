@@ -46,7 +46,7 @@ function ListItem() {
         } else {
           const newItems = items.map((item) => {
             if (item.productName === name) {
-              item.soldOut = true;
+              item.isSoldOut = true;
             }
             return item;
           });
@@ -69,9 +69,17 @@ function ListItem() {
     const currentItems = [];
 
     for (let i = currentPage * 9 - 9; i < currentPage * 9; i++) {
-      let item = items[i];
-      if (item) {
-        currentItems.push(
+      currentItems.push(items[i]);
+      setCurrentPageItems(currentItems);
+    }
+
+    return currentItems;
+  }
+
+  if (currentPageItems.length > 0) {
+    return (
+      currentPageItems.map(item => {
+        return (
           <div className="listItem">
             <img src={item.imageUrl} />
             <p>{item.productName}</p>
@@ -85,22 +93,9 @@ function ListItem() {
               Buy
             </button>
           </div>
-        );
-      }
-    }
-
-    return currentItems;
-  }
-
-  let currentItems;
-  if (searchTerm === "") {
-    currentItems = createCurrentItems(items);
-  } else {
-    currentItems = createCurrentItems(searchResults);
-  }
-
-  if (currentItems.length > 0) {
-    return <>{currentItems}</>;
+        )
+      })
+    );
   }
   return (
     <>
