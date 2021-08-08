@@ -35,7 +35,12 @@ function reducer(state, action) {
             const newTotal = state.total + action.payload.price;
             const newArr = state.itemsBought;
             newArr[i]["num"] += 1;
-            return { ...state, wallet: newWallet, total: newTotal, itemsBought: newArr};
+            return {
+              ...state,
+              wallet: newWallet,
+              total: newTotal,
+              itemsBought: newArr,
+            };
           } else {
             const newItems = state.items.map((item) => {
               if (item.productName === action.payload.name) {
@@ -43,7 +48,7 @@ function reducer(state, action) {
               }
               return item;
             });
-            return { ...state, items: newItems};
+            return { ...state, items: newItems };
           }
         }
       }
@@ -56,7 +61,12 @@ function reducer(state, action) {
         newObj["num"] = 1;
         const newArr = state.itemsBought;
         newArr.push(newObj);
-        return {...state, wallet: newWallet, total: newTotal, itemsBought: newArr}
+        return {
+          ...state,
+          wallet: newWallet,
+          total: newTotal,
+          itemsBought: newArr,
+        };
       }
     default:
       return state;

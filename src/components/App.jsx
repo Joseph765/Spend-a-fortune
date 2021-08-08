@@ -32,8 +32,6 @@ function App() {
     getRequest();
   }, [state.searchTerm]);
 
-  // console.log("itemsBought: " + state.itemsBought);
-
   if (state.items.length > 0) {
     return (
       <>

@@ -2,17 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import WalletContext from "./AppContext.jsx";
 
 import { setGameStatus } from "../context/actions.jsx";
+import { millisToMinutesAndSeconds } from "../utils/index.jsx";
 
 function Timer() {
   const [timer, setTimer] = useState(60000);
   const [currentTime, setCurrentTime] = useState("1:00");
 
   const { state, dispatch } = useContext(WalletContext);
-
-  function millisToMinutesAndSeconds(millis) {
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return 0 + ":" + (seconds < 10 ? "0" : "") + seconds;
-  }
 
   setTimeout(() => {
     setCurrentTime(millisToMinutesAndSeconds(timer - 1000));

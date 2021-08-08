@@ -4,8 +4,8 @@ import WalletContext from "./AppContext.jsx";
 function ShoppingCart() {
   const { state, dispatch } = useContext(WalletContext);
 
-  const items = state.itemsBought.map((item) => {
-    return <p>{`${item.name}: x${item.num}`}</p>;
+  const items = state.itemsBought.map((item, index) => {
+    return <p key={index}>{`${item.name}: x${item.num}`}</p>;
   });
 
   return (

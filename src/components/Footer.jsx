@@ -13,13 +13,24 @@ function Footer() {
       setCurrentPage(dispatch, 1);
       for (let i = 0; i < state.searchResults.length / 9; i++) {
         buttons.push(
-          <button className="page-btn" onClick={() => setCurrentPage(dispatch, i + 1)}>
+          <button
+            key={i}
+            className="page-btn"
+            onClick={() => setCurrentPage(dispatch, i + 1)}
+          >
             {i + 1}
           </button>
         );
-        if (i === state.searchResults.length / 9 && state.searchResults.length % 9 > 0) {
+        if (
+          i === state.searchResults.length / 9 &&
+          state.searchResults.length % 9 > 0
+        ) {
           buttons.push(
-            <button className="page-btn" onClick={() => setCurrentPage(dispatch, i + 2)}>
+            <button
+              key={i + 1}
+              className="page-btn"
+              onClick={() => setCurrentPage(dispatch, i + 2)}
+            >
               {i + 2}
             </button>
           );
@@ -32,13 +43,21 @@ function Footer() {
     buttons.length = 0;
     for (let i = 0; i < state.items.length / 9; i++) {
       buttons.push(
-        <button className="page-btn" onClick={() => setCurrentPage(dispatch, i + 1)}>
+        <button
+          key={i}
+          className="page-btn"
+          onClick={() => setCurrentPage(dispatch, i + 1)}
+        >
           {i + 1}
         </button>
       );
       if (i === state.items.length / 9 && state.items.length % 9 > 0) {
         buttons.push(
-          <button className="page-btn" onClick={() => setCurrentPage(dispatch, i + 2)}>
+          <button
+            key={i + 1}
+            className="page-btn"
+            onClick={() => setCurrentPage(dispatch, i + 2)}
+          >
             {i + 2}
           </button>
         );
