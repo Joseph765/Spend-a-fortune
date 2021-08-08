@@ -4,11 +4,11 @@ import WalletContext from "./AppContext.jsx";
 import ShoppingCart from "./ShoppingCart.jsx";
 
 function GameOver() {
-  const { gameStatus } = useContext(WalletContext);
+  const { state, dispatch } = useContext(WalletContext);
 
   return (
     <>
-      <h1 className="game-over">{gameStatus}</h1>
+      <h1 className="game-over">{state.gameStatus}</h1>
       <ShoppingCart />
     </>
   );
