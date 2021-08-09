@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
-import initialState from "../context/initialState.jsx";
-import WalletContext from "../components/AppContext.jsx";
-import reducer from "../context/reducer.jsx";
+import initialState from "../context/initialState.js";
+import WalletContext from "../components/AppContext.js";
+import reducer from "../context/reducer.js";
 
 function AppContextProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);

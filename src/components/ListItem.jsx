@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import WalletContext from "./AppContext.jsx";
+import WalletContext from "./AppContext.js";
 
 import {
   setItems,
@@ -9,9 +9,9 @@ import {
   setCurrentPageItems,
   setGameStatus,
   buy,
-} from "../context/actions.jsx";
+} from "../context/actions.js";
 
-import { createCurrentItems } from "../utils/index.jsx";
+import { createCurrentItems } from "../utils/index.js";
 
 function ListItem() {
   const { state, dispatch } = useContext(WalletContext);

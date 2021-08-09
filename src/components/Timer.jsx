@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import WalletContext from "./AppContext.jsx";
+import WalletContext from "./AppContext.js";
 
-import { setGameStatus } from "../context/actions.jsx";
-import { millisToMinutesAndSeconds } from "../utils/index.jsx";
+import { setGameStatus } from "../context/actions.js";
+import { millisToMinutesAndSeconds } from "../utils/index.js";
 
 function Timer() {
   const [timer, setTimer] = useState(180000);

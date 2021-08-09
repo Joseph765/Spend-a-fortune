@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import WalletContext from "./AppContext.jsx";
+import WalletContext from "./AppContext.js";
 
 function ShoppingCart() {
   const { state, dispatch } = useContext(WalletContext);

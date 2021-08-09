@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import WalletContext from "./AppContext.jsx";
+import WalletContext from "./AppContext.js";
 
 import ShoppingCart from "./ShoppingCart.jsx";
 

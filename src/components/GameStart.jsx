@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import WalletContext from "./AppContext.jsx";
+import WalletContext from "./AppContext.js";
 
-import { setStartGame } from "../context/actions.jsx";
+import { setStartGame } from "../context/actions.js";
 
 function StartGame() {
   const { state, dispatch } = useContext(WalletContext);

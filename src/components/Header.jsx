@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import WalletContext from "./AppContext.jsx";
+import WalletContext from "./AppContext.js";
 
 import Timer from "./Timer.jsx";
 import ShoppingCart from "./ShoppingCart.jsx";
 
-import { setSearchTerm } from "../context/actions.jsx";
+import { setSearchTerm } from "../context/actions.js";
 
 function Header() {
   const { state, dispatch } = useContext(WalletContext);

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
-import WalletContext from "./AppContext.jsx";
-import { setCurrentPage } from "../context/actions.jsx";
+import WalletContext from "./AppContext.js";
+import { setCurrentPage } from "../context/actions.js";
 
 function Footer() {
   const { state, dispatch } = useContext(WalletContext);

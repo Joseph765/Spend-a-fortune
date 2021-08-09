@@ -4,10 +4,10 @@ import GameOver from "./GameOver.jsx";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import List from "./List.jsx";
-import WalletContext from "./AppContext.jsx";
+import WalletContext from "./AppContext.js";
 
-import initialState from "../context/initialState.jsx";
-import { setItems, setSearchResults } from "../context/actions.jsx";
+import initialState from "../context/initialState.js";
+import { setItems, setSearchResults } from "../context/actions.js";
 
 function App() {
   const { state, dispatch } = useContext(WalletContext);
