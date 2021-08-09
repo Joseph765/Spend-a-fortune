@@ -28,7 +28,7 @@ function App() {
           return result.status;
         })
         .then((result) => {
-          if (isNaN(result)) {
+          if (typeof result !== "NUMBER") {
             setItems(dispatch, result);
           }
         });
@@ -46,7 +46,7 @@ function App() {
           return result.status;
         })
         .then((result) => {
-          if (isNaN(result)) {
+          if (typeof result !== "NUMBER") {
             setSearchResults(dispatch, result);
           }
         });
