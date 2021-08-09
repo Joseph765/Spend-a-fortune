@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: path.resolve(__dirname, 'src/index.jsx'),
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -10,8 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?jsx$/,
-        exclude: /(node_modules|browser_components)/,
+        exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
