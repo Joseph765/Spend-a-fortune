@@ -10,6 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.m?jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
