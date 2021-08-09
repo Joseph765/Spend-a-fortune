@@ -11,19 +11,44 @@ import { setItems, setSearchResults } from "../context/actions.jsx";
 
 function App() {
   const { state, dispatch } = useContext(WalletContext);
+  const [status, setStatus] = useState({});
 
   function getRequest() {
     if (state.searchTerm === "") {
       fetch(`/data`)
-        .then((result) => result.json())
         .then((result) => {
-          setItems(dispatch, result);
+          setStatus({
+            statusCode: result.status,
+            statusText: result.statusText,
+            trace: "Error occurred when fetching all items"
+          });
+          if (result.status === 200) {
+            return result.json();
+          }
+          return result.status;
+        })
+        .then((result) => {
+          if (isNaN(result)) {
+            setItems(dispatch, result);
+          }
         });
     } else {
       fetch(`/search/${state.searchTerm}`)
-        .then((result) => result.json())
         .then((result) => {
-          setSearchResults(dispatch, result);
+          setStatus({
+            statusCode: result.status,
+            statusText: result.statusText,
+            trace: `Error occurred when fetching searched items under: ${state.searchTerm}`
+          });
+          if (result.status === 200) {
+            return result.json();
+          }
+          return result.status;
+        })
+        .then((result) => {
+          if (isNaN(result)) {
+            setSearchResults(dispatch, result);
+          }
         });
     }
   }
@@ -32,7 +57,7 @@ function App() {
     getRequest();
   }, [state.searchTerm]);
 
-  if (state.items.length > 0) {
+  if (state.items.length > 0 && status.statusCode === 200) {
     return (
       <>
         {state.startGame && state.gameStatus === "" ? (
@@ -51,7 +76,16 @@ function App() {
       </>
     );
   }
-  return <h1>No items found under: {state.searchTerm}</h1>;
+
+  return (
+    <>
+      <h1>{status.statusCode}</h1>
+      <p>{status.statusText}</p>
+      <p>{status.trace}</p>
+    </>
+  );
+
+  return <p>Error</p>;
 }
 
 export default App;
