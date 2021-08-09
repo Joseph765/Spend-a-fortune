@@ -20,7 +20,7 @@ function App() {
           setStatus({
             statusCode: result.status,
             statusText: result.statusText,
-            trace: "Error occurred when fetching all items"
+            trace: "Error occurred when fetching all items",
           });
           if (result.status === 200) {
             return result.json();
@@ -38,7 +38,7 @@ function App() {
           setStatus({
             statusCode: result.status,
             statusText: result.statusText,
-            trace: `Error occurred when fetching searched items under: ${state.searchTerm}`
+            trace: `Error occurred when fetching searched items under: ${state.searchTerm}`,
           });
           if (result.status === 200) {
             return result.json();

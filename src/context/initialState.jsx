@@ -8,7 +8,7 @@ const initialState = {
   searchTerm: "",
   searchResults: "",
   startGame: false,
-  gameStatus: ""
+  gameStatus: "",
 };
 
 export default initialState;

@@ -11,7 +11,9 @@ function Timer() {
   const { state, dispatch } = useContext(WalletContext);
 
   setTimeout(() => {
-    setCurrentTime("......in " + millisToMinutesAndSeconds(timer - 1000) + " minutes.");
+    setCurrentTime(
+      "......in " + millisToMinutesAndSeconds(timer - 1000) + " minutes."
+    );
     setTimer(timer - 1000);
 
     if (timer === 0) {

@@ -19,7 +19,10 @@ function Header() {
       <h1 className="title">Spend $100,000! :D</h1>
       <div className="search-bar">
         <span>Search: </span>
-        <input type="text" onChange={(e) => setSearchTerm(dispatch, e.target.value)} />
+        <input
+          type="text"
+          onChange={(e) => setSearchTerm(dispatch, e.target.value)}
+        />
       </div>
       <Timer />
       <div className="wallet">
