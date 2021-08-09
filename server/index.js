@@ -4,7 +4,7 @@ const faker = require("faker");
 const { data } = require("./data.js");
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 function shuffle(array) {
   var currentIndex = array.length,
