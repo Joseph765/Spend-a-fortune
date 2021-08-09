@@ -1,5 +1,5 @@
 const initialState = {
-  wallet: 50000,
+  wallet: 100000,
   total: 0,
   items: [],
   itemsBought: [],

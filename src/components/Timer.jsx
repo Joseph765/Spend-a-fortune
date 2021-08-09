@@ -5,13 +5,13 @@ import { setGameStatus } from "../context/actions.jsx";
 import { millisToMinutesAndSeconds } from "../utils/index.jsx";
 
 function Timer() {
-  const [timer, setTimer] = useState(60000);
-  const [currentTime, setCurrentTime] = useState("1:00");
+  const [timer, setTimer] = useState(180000);
+  const [currentTime, setCurrentTime] = useState("......in 3:00 minutes");
 
   const { state, dispatch } = useContext(WalletContext);
 
   setTimeout(() => {
-    setCurrentTime(millisToMinutesAndSeconds(timer - 1000));
+    setCurrentTime("......in " + millisToMinutesAndSeconds(timer - 1000) + " minutes.");
     setTimer(timer - 1000);
 
     if (timer === 0) {

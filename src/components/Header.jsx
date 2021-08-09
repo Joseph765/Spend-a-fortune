@@ -14,18 +14,19 @@ function Header() {
   });
 
   return (
-    <>
-      <Timer />
-      <h1 className="title">Spend A Fortune!</h1>
-      <div className="wallet">
-        <p>Amount to spend: ${state.wallet}</p>
-        <p>Total spent so far: ${state.total}</p>
-        <div className="search-bar">
-          <input type="text" onChange={(e) => setSearchTerm(dispatch, e.target.value)} />
-        </div>
-      </div>
+    <header>
       <ShoppingCart />
-    </>
+      <h1 className="title">Spend $100,000! :D</h1>
+      <div className="search-bar">
+        <span>Search: </span>
+        <input type="text" onChange={(e) => setSearchTerm(dispatch, e.target.value)} />
+      </div>
+      <Timer />
+      <div className="wallet">
+        <p className="amount">Amount left: ${state.wallet}</p>
+        <p className="total">Total spent: ${state.total}</p>
+      </div>
+    </header>
   );
 }
 
